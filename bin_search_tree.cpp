@@ -5,6 +5,7 @@
 #include "node.hpp"
 #include "bin_search_tree.hpp"
 
+
 template <class T>
 BinSearchTree<T>::BinSearchTree() {
   head_ = nullptr;

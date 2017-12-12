@@ -4,6 +4,7 @@
 #include <iostream>
 #include "node.hpp"
 
+
 template <class T>
 Node<T>::Node() {
   data_ = T(0);
@@ -20,7 +21,7 @@ Node<T>::Node(T data) {
 
 
 template <class T>
-std::ostream& operator<<(std::ostream &os,const Node<T> & node){
+std::ostream& operator<<(std::ostream &os,const Node<T> &node){
   os << node.data_;
   return os;
 }

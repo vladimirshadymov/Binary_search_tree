@@ -9,6 +9,7 @@
 #include "node.hpp"
 #include <vector>
 
+
 template <class T>
 class BinSearchTree{
  private:

@@ -7,8 +7,8 @@
 #include <cmath>
 #include <sstream>
 #include <iomanip>
-#include "node.hpp"
-#include "bin_search_tree.hpp"
+#include "node.cpp"
+#include "bin_search_tree.cpp"
 
 
 // Создание вектора
