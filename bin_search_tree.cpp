@@ -14,14 +14,15 @@ BinSearchTree<T>::BinSearchTree() {
 template <class T>
 void BinSearchTree<T>::destroy(Node<T>*&node_ptr) {
   if (node_ptr == nullptr) return;
-  else if (node_ptr->left_== nullptr and node_ptr->right_== nullptr){
-    delete node_ptr;
-    node_ptr = nullptr;
-    return;
-  }else{
+  else{
     destroy(node_ptr->left_);
     destroy(node_ptr->right_);
+    if (node_ptr->left_== nullptr and node_ptr->right_== nullptr) {
+      delete node_ptr;
+      node_ptr = nullptr;
+    }
   }
+
 }
 
 template <class T>
@@ -45,8 +46,8 @@ bool BinSearchTree<T>::checkElem(T data) {
   Node<T>* iterator = head_;
 
   while (iterator!=nullptr and iterator->data_!=data){
-    if (data<iterator->data_) iterator->left_;
-    else if (data>iterator->data_) iterator->right_;
+    if (data<iterator->data_) iterator = iterator->left_;
+    else if (data>iterator->data_) iterator = iterator->right_;
   }
 
   return (iterator!=nullptr);
@@ -57,8 +58,8 @@ Node<T>* BinSearchTree<T>::findElem(T data) {
   Node<T>* iterator = head_;
 
   while (iterator!=nullptr and iterator->data_!=data){
-    if (data<iterator->data_) iterator->left_;
-    else if (data>iterator->data_) iterator->right_;
+    if (data<iterator->data_) iterator = iterator->left_;
+    else if (data>iterator->data_) iterator = iterator->right_;
   }
 
   return iterator;
@@ -95,9 +96,9 @@ void BinSearchTree<T>::pushElem(T data) {
 template <class T>
 void BinSearchTree<T>::getSubTreeAsVector(Node<T> *sub_head, std::vector<T> &v) {
   if (sub_head==nullptr) return;
-  else if (sub_head->left_==nullptr and sub_head->right_==nullptr) v.push_back();
   else {
     getSubTreeAsVector(sub_head->left_, v);
+    v.push_back(sub_head->data_);
     getSubTreeAsVector(sub_head->right_, v);
   }
 }
@@ -108,7 +109,7 @@ std::ostream& operator<<(std::ostream& os,BinSearchTree<T> & tree) {
   std::vector<T> output_vector = {};
   tree.getSubTreeAsVector(it, output_vector);
   for (auto& item : output_vector){
-    os << item;
+    os << item << ", ";
   }
   return os;
 }

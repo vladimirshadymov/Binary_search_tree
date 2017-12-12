@@ -14,7 +14,7 @@ class Node{
   Node<T>* left_;
   Node<T>* right_;
   Node();
-  Node(T data);
+  explicit Node(T data);
   ~Node()= default;
 
 };
