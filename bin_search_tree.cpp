@@ -4,7 +4,7 @@
 
 #include "node.hpp"
 #include "bin_search_tree.hpp"
-
+#include <queue>
 
 template <class T>
 BinSearchTree<T>::BinSearchTree() {
@@ -37,7 +37,7 @@ void BinSearchTree<T>::destroyTree() {
 
 
 template <class T>
-Node<T>* BinSearchTree<T>::getHead() {
+Node<T>* BinSearchTree<T>::getHead()const {
   return head_;
 }
 
@@ -112,4 +112,18 @@ std::ostream& operator<<(std::ostream& os,BinSearchTree<T> & tree) {
     os << item << ", ";
   }
   return os;
+}
+
+template<class T>
+BinSearchTree<T>& BinSearchTree<T>::operator=(const BinSearchTree<T> &tree) {
+  std::queue<Node<T>*> queue_of_nodes;
+  Node<T>* tmp_node_iterator;
+  queue_of_nodes.push(tree.getHead());
+  while (!queue_of_nodes.empty()) {
+    tmp_node_iterator = queue_of_nodes.front();
+    this->pushElem(tmp_node_iterator->data_);
+    queue_of_nodes.pop();
+    if (tmp_node_iterator->left_!= nullptr) queue_of_nodes.push(tmp_node_iterator->left_);
+    if (tmp_node_iterator->right_!= nullptr) queue_of_nodes.push(tmp_node_iterator->right_);
+  }
 }

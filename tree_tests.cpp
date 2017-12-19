@@ -86,12 +86,27 @@ TEST(BinSearchTree, Output)
   ASSERT_EQ(out.str(), "1, 2, 4, 6, 10, 12, ");
 }
 
+TEST(BinSearchTree, Assignment) {
+  BinSearchTree<int> bin_tree_1;
+  bin_tree_1.pushElem(4);
+  bin_tree_1.pushElem(6);
+  bin_tree_1.pushElem(12);
+  bin_tree_1.pushElem(10);
+  bin_tree_1.pushElem(1);
+  bin_tree_1.pushElem(2);
+  BinSearchTree<int> bin_tree_2;
+  bin_tree_2 = bin_tree_1;
+
+  std::ostringstream out;
+
+  out << std::setprecision(2) << bin_tree_2;
+
+
+  ASSERT_EQ(out.str(), "1, 2, 4, 6, 10, 12, ");
+
+}
+
 int main(int argc, char* argv[]) {
   testing::InitGoogleTest(&argc, argv);
-
-  int tmp = 5;
-  Node<int> nd(tmp);
-  std::cout << nd;
-
   return RUN_ALL_TESTS();
 }

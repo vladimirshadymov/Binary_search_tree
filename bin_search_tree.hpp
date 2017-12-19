@@ -20,8 +20,9 @@ class BinSearchTree{
   ~BinSearchTree();
   void destroyTree();
 
-  Node<T>* getHead();
+  Node<T>* getHead()const;
 
+  BinSearchTree<T> &operator=(const BinSearchTree<T> &tree);
 
   /*!
    * Проверка на наличие элемента в дереве.
